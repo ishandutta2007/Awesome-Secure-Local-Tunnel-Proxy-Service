@@ -1,126 +1,166 @@
-# Awesome-Secure-Local-Tunnel-Proxy-Service
+<div align="center">
 
-# Awesome Secure Local Tunnel & Proxy Service
+# 🚀 Awesome Secure Local Tunnel & Proxy Services
 
-> A curated list of top Secure Local Tunnel and Proxy Service platforms — both SaaS/Hosted commercial solutions and open-source alternatives for exposing localhost services to the internet securely for testing, webhooks, and demos.
-> 🌟 Star this repo if you find it useful! 🌟
+[![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
+[![License: CC0-1.0](https://img.shields.io/badge/License-CC0_1.0-blue.svg)](https://creativecommons.org/publicdomain/zero/1.0/)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/ishandutta2007/Awesome-Secure-Local-Tunnel-Proxy-Service/pulls)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/ishandutta2007/Awesome-Secure-Local-Tunnel-Proxy-Service/graphs/commit-activity)
 
----
+<p align="center">
+  <img src="assets/banner.svg" alt="Awesome Secure Local Tunnel and Proxy Service Banner" width="100%" />
+</p>
 
-## 📋 Table of Contents
+**A curated, production-grade guide to secure local tunneling, reverse proxies, and NAT traversal tools.**  
+Expose `localhost` safely to the public internet for webhook debugging, cross-browser/mobile QA testing, client demos, and IoT integrations.
 
-- [SaaS / Hosted Platforms](#-saas--hosted-platforms)
-  - [BrowserStack Local Testing](#browserstack-local-testing)
-  - [Sauce Connect Tunnel](#sauce-connect-tunnel)
-  - [LambdaTest Underpass](#lambdatest-underpass)
-  - [ngrok](#ngrok)
-  - [LocalXpose](#localxpose)
-  - [Cloudflare Tunnel](#cloudflare-tunnel)
-  - [Tailscale Funnel](#tailscale-funnel)
-  - [PageKite](#pagekite)
-- [Open-Source Software](#-open-source-software)
-  - [inlets](#inlets)
-  - [localtunnel](#localtunnel)
-- [Comparison at a Glance](#-comparison-at-a-glance)
-- [Contributing](#-contributing)
+[🌟 Star on GitHub](https://github.com/ishandutta2007/Awesome-Secure-Local-Tunnel-Proxy-Service) • [📋 SaaS Table](#-commercial--saas-tunnel-platforms) • [🛠️ Open-Source Tools](#-open-source-software--self-hosted-solutions) • [🤝 Contributing](#-contributing)
+
+</div>
 
 ---
 
-## 🟦 SaaS / Hosted Platforms
+## 📑 Table of Contents
 
-Commercial, cloud-hosted Secure Local Tunnel and Proxy Service platforms. These are not fully open-source but are included as reference points for feature comparison.
-
-### BrowserStack Local Testing
-**Type:** Secure tunnel for cross-browser testing of localhost apps
-BrowserStack Local Testing establishes a secure connection between your local machine and BrowserStack's cloud to test locally hosted applications across 3,500+ real devices and browsers . Two setup paths are available: a **Desktop App** for Windows/macOS and a **Local Binary** for all operating systems including Linux (recommended for Automate/App Automate) . The Local Binary v8.9 (March 2026) added include/exclude host functionality for individual IPs or subnets, a global `--timeout` flag, and a `--disable-ssl-validation` flag for testing with self-signed certificates . Integration is native to BrowserStack's testing platform, eliminating separate tunnel configuration.
-**Best for:** Teams already using BrowserStack for cross-browser testing needing a purpose-built, low-configuration tunnel with enterprise-grade controls.
-
-### Sauce Connect Tunnel
-**Type:** Secure tunnel for Sauce Labs testing
-Sauce Connect establishes a secure connection between your local network and Sauce Labs' cloud testing infrastructure, enabling testing of localhost and staging environments. It is the native tunnel solution for Sauce Labs users, with CLI-based management and support for proxy configurations.
-
-### LambdaTest Underpass
-**Type:** GUI-based secure tunnel for local testing
-LambdaTest Underpass is a **desktop application** that establishes an SSH tunnel between your machine and LambdaTest's cloud without requiring terminal commands [citation:2]. It supports login via Email/Password, Google, GitHub, or organization SSO, with advanced configurations including **MITM mode** for testing sites with self-signed certificates and **local directory access** (using `local-folder.lambdatest.com` as the testing URL) [citation:2]. The CLI-based TestMu AI Tunnel remains available for automation workflows [citation:11].
-**Best for:** QA teams wanting a no-CLI, GUI-driven tunnel for manual cross-browser testing, particularly those needing MITM for self-signed certificates.
-
-### ngrok
-**Type:** General-purpose ingress tunnel with generous free tier
-ngrok is the most widely recognized general-purpose tunnel service. The **free plan** includes unlimited online endpoints (up to 3 concurrently), HTTPS tunnels with automatic TLS, 1 GB/month data transfer, 20,000 HTTP requests, and 4,000 requests/min rate limit [citation:4][citation:13]. A key limitation is the **interstitial warning page** on HTML traffic (deterring phishing), which can be bypassed with the `ngrok-skip-browser-warning` header or a non-standard User-Agent [citation:4]. Free endpoints have no timeout, making them suitable for background services [citation:4]. Custom domains and reserved URLs require paid plans.
-**Best for:** Developers wanting a reliable, zero-config tunnel with a free tier for webhooks and demos, accepting the interstitial page and monthly quotas.
-
-### LocalXpose
-**Type:** Tunnel service with free tier
-LocalXpose offers a **Starter free plan** with 2 active HTTP/HTTPS tunnels, SSL/TLS encryption, unique subdomains, and all platform builds available [citation:9]. The free tier includes an interstitial warning page (similar to ngrok). Paid plans unlock more tunnels, custom domains, and removal of the interstitial.
-**Best for:** Developers wanting a free ngrok alternative with similar features, accepting the same interstitial trade-off.
-
-### Cloudflare Tunnel
-**Type:** Zero-trust tunnel with free named tunnels
-Cloudflare Tunnel (`cloudflared`) provides secure, outbound-only connections from your local service to Cloudflare's edge, with no inbound ports required. **Ephemeral tunnels** generate a random public URL on each run, while **named tunnels** provide persistent subdomains across restarts and support **Cloudflare Access policies** for authentication in front of the tunnel [citation:12]. Named tunnels can be installed as a systemd service for unattended operation [citation:3]. The free tier includes unlimited bandwidth and requests, making it one of the most generous options.
-**Best for:** Teams wanting a production-grade, zero-trust tunnel with persistent URLs and authentication, particularly those already using Cloudflare.
-
-### Tailscale Funnel
-**Type:** Tailnet-based public exposure with strict limitations
-Tailscale Funnel routes public internet traffic to a local service running in your Tailscale network, without requiring visitors to use Tailscale [citation:6]. It requires Tailscale v1.38.3+, MagicDNS, HTTPS certificates, and a `funnel` node attribute in the tailnet policy [citation:6]. **Key limitations:** Funnel only uses DNS names in your `tailnet-name.ts.net` domain, only listens on ports 443/8443/10000, only works over TLS, and is subject to **non-configurable bandwidth limits** [citation:6]. It is beta and disabled by default. Funnel URLs persist across reboots as long as the device remains in the tailnet [citation:15].
-**Best for:** Teams already using Tailscale wanting to expose a service to the public with minimal setup, accepting the strict port/domain restrictions and bandwidth caps.
-
-### PageKite
-**Type:** Long-standing tunnel with trial-based access
-PageKite provides localhost tunneling with a **31-day free trial (2.5 GB transfer)** [citation:5]. The `pagekite.py` software is free and open-source, but the hosted service requires a paid plan after the trial. Free software developers can apply for sponsored accounts [citation:5]. Note that new subscriptions were temporarily unavailable per the signup page.
-**Best for:** Developers wanting a mature, Python-based tunnel with a trial period, or those eligible for sponsored free software accounts.
+- [🌐 Overview & Key Architecture](#-overview--key-architecture)
+- [📈 Sector Overview & Market Dynamics](#-sector-overview--market-dynamics)
+- [🏢 Commercial & SaaS Tunnel Platforms](#-commercial--saas-tunnel-platforms)
+- [💻 Open-Source Software & Self-Hosted Solutions](#-open-source-software--self-hosted-solutions)
+- [⚖️ Feature & Architecture Comparison](#-feature--architecture-comparison)
+- [🎯 Choosing the Right Tool](#-choosing-the-right-tool)
+- [🤝 Contributing](#-contributing)
+- [📄 License](#-license)
 
 ---
 
-## 🟩 Open-Source Software
+## 🌐 Overview & Key Architecture
 
-Self-hosted, community-driven Secure Local Tunnel and Proxy Service tools. Both listed projects are fully open-source and can be self-hosted.
+Localhost tunneling and reverse-proxy services create encrypted outbound connections from a developer's workstation or private network (`localhost:[port]`) to an external edge relay or gateway, routing inbound public HTTP/HTTPS/TCP traffic backward through firewalls and NAT without port forwarding.
 
-### inlets
-**Stack:** Go | **License:** MIT
-inlets is a **cloud-native tunnel written in Go**, designed to expose local services through a public endpoint [citation:7]. It uses a client-server architecture where the inlets client runs in your local network and connects outbound to an inlets server running on a public host (cloud VM, Kubernetes, etc.). The server forwards incoming requests through the established tunnel to the local service. Because it is MIT-licensed and written in Go, it can be compiled for any platform and embedded in automation workflows. Unlike hosted services, inlets gives you full control over the public endpoint and bandwidth.
-**Best for:** Teams wanting a self-hosted, fully open-source tunnel with no usage quotas, deployable on their own infrastructure for production-grade exposure.
+```
++------------------+         Encrypted Tunnel         +----------------------+         Public Internet
+| Local Workstation| ===============================> | Edge / Ingress Relay | <============================= [ Stripe / GitHub / Client ]
+|  localhost:3000  |  (SSH / WireGuard / HTTP/2 Mux)  | (Cloudflare / ngrok) |   https://tunnel.example.com
++------------------+                                  +----------------------+
+```
 
-### localtunnel
-**Stack:** Node.js | **License:** MIT (client) / Open Source (server)
-localtunnel is a **Node.js CLI** that exposes a local HTTP service on a public URL with a single command: `npx localtunnel --port 8000` [citation:8]. The client is distributed via npm, and the **server component is also open-source** and self-hostable, allowing you to run your own tunnel infrastructure instead of relying on the public `localtunnel.me` service [citation:8]. The project's adoption stems from its extremely low setup cost and the fact that both client and server are open-source. Advanced users can self-host the server, configure DNS wildcards, and point the client at it with `--host` [citation:8].
-**Best for:** Developers wanting the simplest possible open-source tunnel with the option to self-host the server for full control.
+### 🔑 Primary Use Cases
+- 🪝 **Webhook Integration & Debugging:** Receive real-time webhooks locally from Stripe, GitHub, Shopify, Twilio, and Slack.
+- 📱 **Mobile & Cross-Device Testing:** Test responsive builds on actual physical mobile devices or remote cloud device grids.
+- 🤝 **Live Client Previews:** Share work-in-progress websites and APIs with clients and stakeholders without cloud deployment.
+- 🤖 **AI Agents & MCP Servers:** Expose local Model Context Protocol (MCP) daemons, local LLM endpoints, and serverless callback handlers.
+- 🛡️ **Zero-Trust Remote Access:** Securely access homelab dashboards, internal staging environments, and IoT nodes.
 
 ---
 
-## 📊 Comparison at a Glance
+## 📈 Sector Overview & Market Dynamics
 
-| Software | License | Stack | Free Tier | Self-Hosted | Persistent URL | Best For |
-|----------|---------|-------|-----------|-------------|----------------|----------|
-| **BrowserStack Local** | Proprietary | Binary/App | (BrowserStack plan) | ❌ | ❌ | BrowserStack testing tunnel |
-| **Sauce Connect** | Proprietary | CLI | (Sauce plan) | ❌ | ❌ | Sauce Labs testing tunnel |
-| **LambdaTest Underpass** | Proprietary | GUI App | (LambdaTest plan) | ❌ | ❌ | GUI tunnel + MITM |
-| **ngrok** | Proprietary | CLI | ✅ 1GB/mo | ❌ | ❌ (Paid) | General-purpose webhooks |
-| **LocalXpose** | Proprietary | CLI | ✅ 2 tunnels | ❌ | ❌ (Paid) | Free ngrok alternative |
-| **Cloudflare Tunnel** | Proprietary | CLI | ✅ Unlimited | ❌ | ✅ (Named) | Zero-trust + persistent URLs |
-| **Tailscale Funnel** | Proprietary | CLI | ✅ (All plans) | ❌ | ✅ (Tailnet) | Tailnet users, strict ports |
-| **PageKite** | Proprietary | Python | Trial (31d) | ❌ | ❌ | Mature trial-based tunnel |
-| **inlets** | MIT | Go | ✅ (Self-host) | ✅ | ✅ (Your infra) | Fully self-hosted tunnel |
-| **localtunnel** | MIT (client) | Node.js | ✅ (Public) | ✅ (Server) | ❌ | Simplest OSS tunnel |
+> 💡 **Market Size:** The developer-facing secure local tunneling and edge ingress market is an integral driver of the broader **$170B+ Global Developer Tools (DevTools) & Edge Ingress Ecosystem**, addressing a rapidly growing global base of over **28+ million software engineers**.
+>
+> 🔄 **Market Concentration & Fragmentation:** The sector is **moderately to highly fragmented**—characterized by a bifurcated competitive landscape. While hyperscale edge security providers (**Cloudflare**) and pioneer incumbents (**ngrok**) anchor enterprise brand dominance, strict freemium usage caps and bandwidth quotas have propelled a flourishing, highly active long-tail of specialized alternatives and community-backed open-source projects (**frp**, **localtunnel**, **rathole**, **chisel**).
+
+---
+
+## 🏢 Commercial & SaaS Tunnel Platforms
+
+Commercial cloud-hosted tunneling services provide turnkey global relays, managed SSL/TLS termination, access authentication, and inspection dashboards. 
+
+The table below is sorted by **Company Size (Revenue / Enterprise Valuation, Descending)**:
+
+| 🏢 Platform | 💰 Company Size (Valuation / Revenue) | 🏷️ Starting Paid Plan | 🎁 Free Tier / Trial Limit | 🛠️ Tunnel Type & Key Focus |
+|:---|:---|:---|:---|:---|
+| [**Cloudflare Tunnel**](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/) | **~$95B – $105B Market Cap** ($2.17B+ Annual Revenue) | **$7 / user / month** (Cloudflare Zero Trust Pay-as-you-go) | **Free Forever:** Up to 50 users, unlimited bandwidth & requests, persistent named tunnels, Zero-Trust access rules | Zero-trust outbound daemon (`cloudflared`) terminating directly at Cloudflare's global edge network. |
+| [**BrowserStack Local**](https://www.browserstack.com/local-testing) | **$4.0B Valuation** (~$225M+ ARR) | **$29 / user / month** (Desktop Live billed annually) | **Free Trial:** 30 total minutes (capped at 1 min/session per device); 100 screenshots; 100 mins automated testing | Dedicated testing tunnel with desktop app & binary CLI; native integration with 3,500+ cloud browser/OS matrices. |
+| [**Tailscale Funnel**](https://tailscale.com/kb/1223/funnel) | **$1.5B Valuation** (~$45M+ ARR) | **$8 / active user / month** (Standard plan) | **Free Forever (Personal):** Up to 6 users, unlimited devices, Tailscale Funnel included on ports 443/8443/10000 | WireGuard mesh tunnel routing traffic into private tailnet and exposing endpoints via MagicDNS subdomains. |
+| [**Sauce Connect Tunnel**](https://saucelabs.com/platform/sauce-connect-proxy) | **~$613M Valuation** (~$95M+ ARR) | **$39 / month** (Live Testing billed annually) | **Free Trial:** 28-day free trial with full testing features & Sauce Connect proxy support | Secure enterprise proxy tunnel establishing encrypted link to Sauce Labs real device cloud & browser emulators. |
+| [**LambdaTest Underpass**](https://www.lambdatest.com/support/docs/underpass-tunnel-application/) | **~$400M Valuation** (~$35M – $100M+ ARR) | **$15 / month** (Virtual Live testing) | **Free Forever Plan:** 60 mins/month live interactive testing (10-min sessions); Underpass desktop GUI tunnel included | GUI desktop client with SSH tunnel and MITM mode for testing internal staging & self-signed certificates. |
+| [**ngrok**](https://ngrok.com/) | **~$250M – $500M Valuation** (~$25M – $30M ARR) | **$8 / month** (Hobbyist tier billed annually; or $10/mo) | **Free Forever:** 1 dev domain, 3 concurrent endpoints, 1 GB/mo egress, 20,000 HTTP reqs/mo, browser warning page | Industry-standard developer ingress tunnel with HTTP request inspector, payload replay, and TCP/TLS options. |
+| [**LocalXpose**](https://localxpose.io/) | **Bootstrapped / Indie-scale** (Undisclosed private) | **$8 / month** (Pro plan billed annually; or $10/mo) | **Free Forever (Starter):** 2 active HTTP/HTTPS tunnels, 15-min timeout per session, interstitial browser warning | Lightweight alternative to ngrok supporting HTTP/HTTPS, TLS, TCP, and UDP port forwarding. |
+| [**PageKite**](https://pagekite.net/) | **Indie / FOSS SaaS** (Undisclosed private) | **$3 / month** (Pay-what-you-want) / **$5.99 / mo** (Pro) | **Free Trial:** 31-day trial (2.5 GB transfer); permanent free tier for verified open-source maintainers | Python-based reverse-proxy and dynamic DNS service running since 2011 with open-source client (`pagekite.py`). |
+
+---
+
+## 💻 Open-Source Software & Self-Hosted Solutions
+
+Self-hosted, transparent, and quota-free open-source reverse proxies and NAT traversal tunnels. Run the server daemon on your own VPS or Kubernetes cluster to eliminate vendor lock-in, data egress limits, and interstitial warning pages.
+
+The table below is sorted by **GitHub Stars (Descending)**:
+
+| 📦 Repository & Project | ⭐ GitHub Stars | 🛠️ Tech Stack | 📜 License | 💡 Architecture & Key Highlights |
+|:---|:---:|:---:|:---:|:---|
+| [**fatedier/frp**](https://github.com/fatedier/frp) | [![Stars](https://img.shields.io/github/stars/fatedier/frp?style=social&color=white)](https://github.com/fatedier/frp/stargazers) | Go | Apache-2.0 | Ultra-fast, battle-tested reverse proxy supporting TCP, UDP, HTTP, HTTPS, and STCP (secret TCP). Features custom subdomain routing, dashboard, and connection pooling. |
+| [**ehang-io/nps**](https://github.com/ehang-io/nps) | [![Stars](https://img.shields.io/github/stars/ehang-io/nps?style=social&color=white)](https://github.com/ehang-io/nps/stargazers) | Go | Apache-2.0 | Full-featured intranet penetration proxy server with a web-based administration management GUI, multi-tenant user access, and TCP/UDP/SOCKS5 proxying. |
+| [**localtunnel/localtunnel**](https://github.com/localtunnel/localtunnel) | [![Stars](https://img.shields.io/github/stars/localtunnel/localtunnel?style=social&color=white)](https://github.com/localtunnel/localtunnel/stargazers) | Node.js | MIT | Instant localhost exposure via `npx localtunnel --port 8000`. Both client CLI and server hub are fully open-source with simple DNS wildcard support. |
+| [**jpillora/chisel**](https://github.com/jpillora/chisel) | [![Stars](https://img.shields.io/github/stars/jpillora/chisel?style=social&color=white)](https://github.com/jpillora/chisel/stargazers) | Go | MIT | Fast TCP/UDP tunnel transported over HTTP and secured via SSH. Single standalone binary for client and server with automatic reconnection and reverse port forwarding. |
+| [**cloudflare/cloudflared**](https://github.com/cloudflare/cloudflared) | [![Stars](https://img.shields.io/github/stars/cloudflare/cloudflared?style=social&color=white)](https://github.com/cloudflare/cloudflared/stargazers) | Go | Apache-2.0 | Official open-source client for Cloudflare Tunnel. Connects local services to Cloudflare edge via HTTP/2 or QUIC without opening any inbound firewall ports. |
+| [**rathole-org/rathole**](https://github.com/rathole-org/rathole) | [![Stars](https://img.shields.io/github/stars/rathole-org/rathole?style=social&color=white)](https://github.com/rathole-org/rathole/stargazers) | Rust | Apache-2.0 / MIT | High-performance, memory-efficient NAT traversal tunnel written in Rust. Engineered with Tokio async I/O and Noise protocol encryption as a lightweight alternative to frp. |
+| [**ekzhang/bore**](https://github.com/ekzhang/bore) | [![Stars](https://img.shields.io/github/stars/ekzhang/bore?style=social&color=white)](https://github.com/ekzhang/bore/stargazers) | Rust | MIT | Minimalist, modern CLI TCP tunnel in Rust (~400 lines of async code). Forwards any local port to a public server with zero configuration: `bore local 8000 --to bore.pub`. |
+| [**antoniomika/sish**](https://github.com/antoniomika/sish) | [![Stars](https://img.shields.io/github/stars/antoniomika/sish?style=social&color=white)](https://github.com/antoniomika/sish/stargazers) | Go | MIT | Open-source alternative to Serveo and ngrok that provides HTTP, HTTPS, WS, and TCP tunnels over pure SSH. Requires no client installation: `ssh -R 80:localhost:3000 sish`. |
+| [**openziti/zrok**](https://github.com/openziti/zrok) | [![Stars](https://img.shields.io/github/stars/openziti/zrok?style=social&color=white)](https://github.com/openziti/zrok/stargazers) | Go | Apache-2.0 | Next-generation peer-to-peer sharing and tunneling platform built on OpenZiti Zero Trust overlay networking. Supports public and private peer-to-peer shares. |
+| [**davrodpin/mole**](https://github.com/davrodpin/mole) | [![Stars](https://img.shields.io/github/stars/davrodpin/mole?style=social&color=white)](https://github.com/davrodpin/mole/stargazers) | Go | Apache-2.0 | CLI tool for easily creating SSH tunnels, local port forwarding, and remote port forwarding with built-in alias configuration and automatic key lookup. |
+| [**inlets/inlets-operator**](https://github.com/inlets/inlets-operator) | [![Stars](https://img.shields.io/github/stars/inlets/inlets-operator?style=social&color=white)](https://github.com/inlets/inlets-operator/stargazers) | Go | MIT | Cloud-native Kubernetes controller that automatically provisions public cloud exit-nodes and connects internal ClusterIP/LoadBalancer services securely. |
+| [**pagekite/PyPagekite**](https://github.com/pagekite/PyPagekite) | [![Stars](https://img.shields.io/github/stars/pagekite/PyPagekite?style=social&color=white)](https://github.com/pagekite/PyPagekite/stargazers) | Python | AGPL-3.0 | The official Python implementation of the PageKite tunneling protocol. Runs as a standalone reverse proxy to publish local web servers, SSH, and raw TCP streams. |
+
+---
+
+## ⚖️ Feature & Architecture Comparison
+
+| Software | Core Architecture | Protocols Supported | Egress / Traffic Limit | Self-Hostable | Persistent URL Support | Custom Domain | Best Match For |
+|:---|:---|:---|:---|:---:|:---:|:---:|:---|
+| ☁️ **Cloudflare Tunnel** | Edge Daemon (QUIC/H2) | HTTP, HTTPS, TCP, SSH, RDP | Unlimited | ❌ (Client OSS) | ✅ Yes (Named) | ✅ Yes (Free) | Production Zero-Trust access & persistent APIs |
+| 🌐 **frp** | TCP/STCP Multiplexing | HTTP, HTTPS, TCP, UDP, STCP | Unlimited (Self-infra) | ✅ Yes | ✅ Yes (DNS CNAME) | ✅ Yes | High-traffic self-hosted NAT traversal |
+| 🪓 **chisel** | SSH over HTTP/WebSockets | TCP, UDP | Unlimited (Self-infra) | ✅ Yes | ✅ Yes | ✅ Yes | Bypassing restrictive firewalls & proxies |
+| 🦀 **rathole** | Async Tokio + Noise Protocol | TCP, UDP | Unlimited (Self-infra) | ✅ Yes | ✅ Yes | ✅ Yes | Low-resource VPS & high-concurrency tunneling |
+| 🎯 **ngrok** | Edge Ingress Proxy | HTTP, HTTPS, TCP, TLS | 1 GB/mo (Free) | ❌ | ❌ (Paid) | ❌ (Paid) | Fast webhook inspection & dev API demos |
+| 💻 **localtunnel** | Node.js Proxy | HTTP, HTTPS | Bandwidth dependent | ✅ Yes | ❌ (Dynamic) | ❌ | Rapid zero-config testing without account |
+| 🔑 **sish** | SSH Port Forwarding | HTTP, HTTPS, TCP, WS | Unlimited (Self-infra) | ✅ Yes | ✅ Yes | ✅ Yes | Tunneling from machines without sudo/binaries |
+| 🔒 **Tailscale Funnel** | WireGuard Overlay + Edge | HTTPS, TLS | Capped bandwidth | ❌ (Client OSS) | ✅ Yes (Tailnet) | ❌ (`.ts.net`) | Engineers already using Tailscale private mesh |
+| 🧪 **BrowserStack Local** | Testing Agent Binary/App | HTTP, HTTPS, SSL MITM | Test session quota | ❌ | ❌ | ❌ | Automated cross-browser QA & local staging |
+| 🧪 **LambdaTest Underpass**| GUI SSH Tunnel + MITM | HTTP, HTTPS, Cert MITM | Test session quota | ❌ | ❌ | ❌ | Manual QA teams needing graphical setup |
+
+---
+
+## 🎯 Choosing the Right Tool
+
+```mermaid
+flowchart TD
+    A[What is your primary tunneling goal?] --> B{Need zero-install CLI?}
+    B -- Yes --> C[Use antoniomika/sish via SSH or localtunnel via npx]
+    B -- No --> D{Self-hosted or Managed Cloud?}
+    
+    D -- Self-Hosted --> E{Focus area?}
+    E -- Ultra High Performance --> F[rathole in Rust or frp in Go]
+    E -- Firewall Traversal --> G[chisel TCP-over-HTTP]
+    E -- Zero Trust Mesh --> H[openziti/zrok]
+    
+    D -- Managed Cloud --> I{Use Case?}
+    I -- Webhook QA & Replay --> J[ngrok or LocalXpose]
+    I -- Browser/Device Matrix --> K[BrowserStack Local or LambdaTest Underpass]
+    I -- Zero-Trust Production --> L[Cloudflare Tunnel or Tailscale Funnel]
+```
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are welcome! If you know of an open-source Secure Local Tunnel or Proxy Service tool that should be listed here, please open a pull request with:
+Contributions are warmly encouraged! If you have built or discovered an awesome secure local tunnel, reverse proxy, or NAT traversal utility:
 
-- Project name and URL
-- Brief description (1–2 sentences)
-- Stack and license
-- Why it stands out
-
-Please ensure the project is actively maintained (releases within the last 12 months) and genuinely open-source. Note that the ecosystem **splits** between **testing-platform-native tunnels** (BrowserStack Local, Sauce Connect, LambdaTest Underpass) that are purpose-built for cross-browser testing and **general-purpose tunnels** for webhooks and demos. Among general-purpose options, **Cloudflare Tunnel** offers the most generous free tier with persistent named tunnels and zero-trust access policies [citation:12], while **ngrok** remains the most familiar despite its free-tier quotas and interstitial page [citation:4]. For teams wanting **full self-hosting without quotas**, **inlets** (MIT, Go) and **localtunnel** (MIT client, open-source server) are the primary open-source options [citation:7][citation:8].
+1. 🍴 **Fork** this repository.
+2. 🌿 **Create a new branch**: `git checkout -b feature/add-new-tunnel`.
+3. 📝 **Add your entry** in alphabetical or appropriate sorted position following existing formats.
+4. ⭐ **Ensure** the tool is actively maintained with valid licensing.
+5. 🚀 **Submit a Pull Request** with a concise description of why it stands out.
 
 ---
 
 ## 📄 License
 
-This list is released under CC0 1.0 Universal (Public Domain). The software projects listed retain their respective licenses.
+This repository and curated list are licensed under [CC0 1.0 Universal (Public Domain)](LICENSE). Individual listed tools and projects are licensed under their respective authors' licenses.
 
----
+<div align="center">
 
-⭐ **If this list helped you discover a useful tool, please star the repo!** ⭐
+**[⬆️ Back to Top](#-awesome-secure-local-tunnel--proxy-services)**
+
+⭐ **Found this resource valuable? Don't forget to star the repository!** ⭐
+
+</div>
