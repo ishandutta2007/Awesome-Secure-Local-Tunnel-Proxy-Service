@@ -2,10 +2,12 @@
 
 # 🚀 Awesome Secure Local Tunnel & Proxy Services
 
-[![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
+<a href="https://github.com/ishandutta2007/Awesome-Awesome-Awesome"><img src="https://img.shields.io/badge/Awesome-%E2%9C%94-blueviolet?style=flat-square&logo=github" alt="Awesome"/></a><a href="https://discord.gg/jc4xtF58Ve"><img src="https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord" /></a>
+[![Awesome](https://awesome.re/badge.svg)](https://github.com/ishandutta2007/Awesome-Awesome-Awesome)
 [![License: CC0-1.0](https://img.shields.io/badge/License-CC0_1.0-blue.svg)](https://creativecommons.org/publicdomain/zero/1.0/)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/ishandutta2007/Awesome-Secure-Local-Tunnel-Proxy-Service/pulls)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/ishandutta2007/Awesome-Secure-Local-Tunnel-Proxy-Service/graphs/commit-activity)
+<a href="https://github.com/ishandutta2007"><img alt="GitHub followers" src="https://img.shields.io/github/followers/ishandutta2007?label=Follow" /></a>
 
 <p align="center">
   <img src="assets/banner.svg" alt="Awesome Secure Local Tunnel and Proxy Service Banner" width="100%" />
@@ -29,6 +31,8 @@ Expose `localhost` safely to the public internet for webhook debugging, cross-br
 - [⚖️ Feature & Architecture Comparison](#-feature--architecture-comparison)
 - [🎯 Choosing the Right Tool](#-choosing-the-right-tool)
 - [🤝 Contributing](#-contributing)
+- [💖 Support & Sponsorship](#-support--sponsorship)
+- [⭐ Star History](#-star-history)
 - [📄 License](#-license)
 
 ---
@@ -150,6 +154,31 @@ Contributions are warmly encouraged! If you have built or discovered an awesome 
 3. 📝 **Add your entry** in alphabetical or appropriate sorted position following existing formats.
 4. ⭐ **Ensure** the tool is actively maintained with valid licensing.
 5. 🚀 **Submit a Pull Request** with a concise description of why it stands out.
+
+---
+
+## 💖 Support & Sponsorship
+
+Thank you so much for exploring and using **Awesome Secure Local Tunnel & Proxy Services**! 💖
+
+If you found this curated list helpful for your developer workflows, webhook debugging, or team testing infrastructure, please consider supporting the project:
+
+- ⭐ **Star this repository** to help others discover it!
+- 🍴 **Fork and contribute** by adding new tools or updating features.
+- 📢 **Share it** with fellow engineers, QA teams, and DevOps communities.
+- ☕ **Buy me a coffee / Sponsor:** Support ongoing open-source curation and development via the [GitHub Sponsors Dashboard](https://github.com/sponsors/ishandutta2007).
+
+<div align="center">
+
+[![Sponsor ishandutta2007](https://img.shields.io/badge/Sponsor-%E2%9D%A4-ea4aaa?style=for-the-badge&logo=githubsponsors)](https://github.com/sponsors/ishandutta2007)
+
+</div>
+
+---
+
+## ⭐ Star History
+
+[![Star History Chart](https://www.star-history.com/svg?repos=ishandutta2007/Awesome-Secure-Local-Tunnel-Proxy-Service&type=date&legend=top-left)](https://www.star-history.com/#ishandutta2077/Awesome-Secure-Local-Tunnel-Proxy-Service&type=date&legend=top-left)
 
 ---
 
