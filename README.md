@@ -88,9 +88,9 @@ The table below is sorted by **Company Size (Revenue / Enterprise Valuation, Des
 
 Self-hosted, transparent, and quota-free open-source reverse proxies and NAT traversal tunnels. Run the server daemon on your own VPS or Kubernetes cluster to eliminate vendor lock-in, data egress limits, and interstitial warning pages.
 
-The table below is sorted by **GitHub Stars (Descending)**:
+The table below is sorted by **GitHub_Stars (Descending)**:
 
-| 📦 Repository & Project | ⭐ GitHub Stars | 🛠️ Tech Stack | 📜 License | 💡 Architecture & Key Highlights |
+| 📦 Repository & Project | ⭐ GitHub_Stars | 🛠️ Tech Stack | 📜 License | 💡 Architecture & Key Highlights |
 |:---|:---:|:---:|:---:|:---|
 | [**fatedier/frp**](https://github.com/fatedier/frp) | [![Stars](https://img.shields.io/github/stars/fatedier/frp?style=social&color=white)](https://github.com/fatedier/frp/stargazers) | Go | Apache-2.0 | Ultra-fast, battle-tested reverse proxy supporting TCP, UDP, HTTP, HTTPS, and STCP (secret TCP). Features custom subdomain routing, dashboard, and connection pooling. |
 | [**ehang-io/nps**](https://github.com/ehang-io/nps) | [![Stars](https://img.shields.io/github/stars/ehang-io/nps?style=social&color=white)](https://github.com/ehang-io/nps/stargazers) | Go | Apache-2.0 | Full-featured intranet penetration proxy server with a web-based administration management GUI, multi-tenant user access, and TCP/UDP/SOCKS5 proxying. |
